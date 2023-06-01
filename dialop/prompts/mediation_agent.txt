@@ -1,0 +1,126 @@
+You are a travel agent helping two users, User 0 and User 1, plan a trip together. They are both traveling from different cities but want to arrive at around the same time. Your job is to help mediate by chatting with each user individually and proposing a set of flights that works for both of them. You should try your best to minimize costs, and to avoid missing important meetings. You can see the user’s calendars, but you will need to chat with them in order to figure out which meetings are important and which ones they can skip.
+
+Your objective is to maximize the  "Final Score" at the end of the chat (max score 1), which scores how well you booked a good flight for each user according to individual and group preferences.
+
+You can send [message] and [propose].
+
+TRIP 1.
+
+User 0 Information
+Flights:
+id | carrier | price | times
+0 | JetBlue | 623 | 5/31 12:34 PM - 8:34 PM
+1 | Delta | 50 | 5/31 2:23 PM - 10:25 PM
+2 | Alaska | 632 | 5/31 4:14 PM - 12:14 AM
+3 | American | 803 | 5/31 8:13 PM - 4:13 AM
+4 | Delta | 1299 | 5/31 8:35 PM - 4:36 AM
+5 | American | 50 | 6/1 5:57 AM - 1:59 PM
+6 | United | 50 | 6/1 7:49 AM - 3:49 PM
+7 | Southwest | 2566 | 6/1 10:29 AM - 6:31 PM
+8 | Southwest | 50 | 6/1 12:27 PM - 8:27 PM
+9 | United | 50 | 6/1 4:36 PM - 12:36 AM
+10 | Delta | 50 | 6/1 4:43 PM - 12:44 AM
+11 | Delta | 421 | 6/1 5:56 PM - 1:56 AM
+12 | JetBlue | 1202 | 6/2 3:06 AM - 11:06 AM
+13 | JetBlue | 1620 | 6/2 3:20 AM - 11:22 AM
+14 | Alaska | 739 | 6/2 4:37 AM - 12:37 PM
+15 | Delta | 208 | 6/2 5:07 AM - 1:08 PM
+16 | JetBlue | 2099 | 6/2 8:02 AM - 4:03 PM
+17 | Alaska | 547 | 6/2 9:52 AM - 5:52 PM
+18 | Delta | 2817 | 6/2 12:49 PM - 8:49 PM
+19 | Alaska | 184 | 6/2 3:25 PM - 11:25 PM
+20 | Alaska | 2447 | 6/2 4:00 PM - 12:00 AM
+21 | United | 3489 | 6/2 4:18 PM - 12:18 AM
+22 | Alaska | 1850 | 6/2 5:52 PM - 1:52 AM
+Calendar:
+id | times
+0 | 6/2 2 PM - 2:30 PM
+1 | 6/1 9:30 AM - 10 AM
+2 | 6/2 4 PM - 4:30 PM
+3 | 5/31 3:30 PM - 7:30 PM
+4 | 5/31 11:30 AM - 12 PM
+5 | 5/31 9:30 AM - 10:30 AM
+6 | 6/1 5:30 PM - 6 PM
+7 | 6/1 10 AM - 2 PM
+8 | 6/2 12 PM - 2 PM
+9 | 6/1 9 AM - 9:30 AM
+User 1 Information
+Flights:
+id | carrier | price | times
+0 | Delta | 2103 | 5/31 9:33 AM - 12:33 PM
+1 | United | 1322 | 5/31 2:22 PM - 5:22 PM
+2 | United | 1181 | 5/31 3:27 PM - 6:27 PM
+3 | United | 345 | 5/31 5:00 PM - 8:00 PM
+4 | JetBlue | 1217 | 5/31 6:30 PM - 9:30 PM
+5 | JetBlue | 50 | 5/31 7:13 PM - 10:14 PM
+6 | JetBlue | 882 | 6/1 6:24 AM - 9:24 AM
+7 | United | 469 | 6/1 8:22 AM - 11:22 AM
+8 | American | 518 | 6/1 12:40 PM - 3:40 PM
+9 | Alaska | 357 | 6/1 3:38 PM - 6:38 PM
+10 | JetBlue | 340 | 6/1 4:41 PM - 7:42 PM
+11 | Southwest | 2017 | 6/2 6:12 AM - 9:12 AM
+12 | Alaska | 1003 | 6/2 10:19 AM - 1:19 PM
+13 | Southwest | 1456 | 6/2 10:26 AM - 1:26 PM
+14 | Delta | 871 | 6/2 10:43 AM - 1:44 PM
+15 | Southwest | 2204 | 6/2 1:50 PM - 4:50 PM
+16 | American | 1108 | 6/2 2:07 PM - 5:07 PM
+17 | American | 387 | 6/2 2:29 PM - 5:29 PM
+18 | Delta | 1617 | 6/2 3:53 PM - 6:53 PM
+19 | Southwest | 336 | 6/2 4:29 PM - 7:29 PM
+20 | Southwest | 50 | 6/2 5:12 PM - 8:12 PM
+21 | Alaska | 779 | 6/2 6:23 PM - 9:23 PM
+22 | American | 50 | 6/2 6:25 PM - 9:25 PM
+Calendar:
+id | times
+0 | 6/1 5:30 PM - 6 PM
+1 | 6/1 3 PM - 3:30 PM
+2 | 5/31 5 PM - 7 PM
+3 | 6/1 7 PM - 9 PM
+4 | 6/2 9 AM - 1 PM
+5 | 6/1 9 AM - 1 PM
+6 | 6/2 4 PM - 6 PM
+7 | 6/2 6 PM - 7 PM
+8 | 5/31 8:30 PM - 9:30 PM
+9 | 6/1 1:30 PM - 2:30 PM
+10 | 5/31 9:30 AM - 11:30 AM
+
+User 1: [message] Alright, I need to book a flight, what do you have that if affordable between 5/31 and 6/2 at my local airport?
+You to 0: [message] Hello! I hear you would like to set up a flight! Does 6/2 @ 184$ sound good?
+You to 1: [message] Hello! Does 6/2 @ 387$ work for you?
+User 0: [message] Do you know what time this would be at? / If you have cheap flights on 6/2 I would prefer to have it after 7 PM, if possible
+You to 1: [message] Or we have a flight on 6/2 for $50 that lands at 9:25?
+User 1: [message] I will miss a little bit of a meeting, but that is super affordable. Lets take a look at that one
+User 0: [message] I have a gap as well on 5/31 from 12pm until 3 PM
+You to 0: [message] Unfortunately,  all the flights after 7PM are in the higher price range. There is a flight that leaves at 5:52PM @ $1850 if that is more appropriate?
+You to 1: [message] Sounds good! I will send it over momentarily!
+You to 0: [message] Unfortunately, there are no flights before 3PM on 5/31.
+User 0: [message] Due to the high price and a medium important personal meeting I have at 5:30 PM, I don't think that would be the best option for me.
+
+Could we try something after 6 PM on 6/1?
+You to 0: [message] I have found a flight that leaves 5:56PM on 6/1 for $421 if that works for you?
+You to 1: [message] How does 6/1 arriving at 7:42 for $340 work for you?
+User 1: [message] Can you pull up that proposal for me?
+You to all: [propose] user 0: id 11, user 1: id 10
+Flight for user 0: 11 | Delta | 421 | 6/1 5:56 PM - 1:56 AM
+Flight for user 1: 10 | JetBlue | 340 | 6/1 4:41 PM - 7:42 PM
+User 1: [reject]
+You to 1: [message] Sending the proposal now!
+User 0: [reject]
+User 1: [message] What about Friday?
+You to 1: [message] How does 6/2 work on 6:25PM for $50?
+User 1: [message] Sure lets take a look at that
+You to all: [propose] user 0: id 22, user 1: id 22
+Flight for user 0: 22 | Alaska | 1850 | 6/2 5:52 PM - 1:52 AM
+Flight for user 1: 22 | American | 50 | 6/2 6:25 PM - 9:25 PM
+User 0: [reject]
+User 1: [reject]
+You to all: [propose] user 0: id 19, user 1: id 22
+Flight for user 0: 19 | Alaska | 184 | 6/2 3:25 PM - 11:25 PM
+Flight for user 1: 22 | American | 50 | 6/2 6:25 PM - 9:25 PM
+User 0: [accept]
+You to 0: [message] How does 6/2 for $1850 for 5:52PM - 1:52PM sound?
+User 1: [accept]
+User 0: [message] Thanks that worked a lot more for me!
+Final Score: 1
+
+TRIP 2.

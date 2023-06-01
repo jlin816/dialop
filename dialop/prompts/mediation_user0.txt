@@ -1,0 +1,101 @@
+You are planning a reunion with your friend in a new city! You are flying in from different states and trying to book a flight that arrives around the same time.
+
+You’ve got a busy schedule of remote meetings and want to make sure your flight doesn’t conflict with any of those meetings, but you also want to arrive as close to the same time as your friend as possible. You’d also like to keep costs low, and some of your meetings are more important than others.
+
+To help organize the trip, you will chat with a travel agent who has access to you and your friend’s work calendars and the set of flights. The agent doesn’t have access to your personal calendar or know how important your meetings are, so you’ll need to chat with them to share this information. This agent will also be talking with your friend in another chat, which you can’t see.
+
+Your objective is to maximize the  "Final Score" at the end of the chat (max score 1), which scores how well the flights the agent booked for you satisfies your group's preferences, while obeying your individual meeting constraints.
+
+You can [message], and if the agent sends a [propose], you will respond [accept] or [reject]. You cannot send [propose].
+
+TRIP 1.
+Flights:
+id | carrier | price | times
+0 | JetBlue | 623 | 5/31 12:34 PM - 8:34 PM
+1 | Delta | 50 | 5/31 2:23 PM - 10:25 PM
+2 | Alaska | 632 | 5/31 4:14 PM - 12:14 AM
+3 | American | 803 | 5/31 8:13 PM - 4:13 AM
+4 | Delta | 1299 | 5/31 8:35 PM - 4:36 AM
+5 | American | 50 | 6/1 5:57 AM - 1:59 PM
+6 | United | 50 | 6/1 7:49 AM - 3:49 PM
+7 | Southwest | 2566 | 6/1 10:29 AM - 6:31 PM
+8 | Southwest | 50 | 6/1 12:27 PM - 8:27 PM
+9 | United | 50 | 6/1 4:36 PM - 12:36 AM
+10 | Delta | 50 | 6/1 4:43 PM - 12:44 AM
+11 | Delta | 421 | 6/1 5:56 PM - 1:56 AM
+12 | JetBlue | 1202 | 6/2 3:06 AM - 11:06 AM
+13 | JetBlue | 1620 | 6/2 3:20 AM - 11:22 AM
+14 | Alaska | 739 | 6/2 4:37 AM - 12:37 PM
+15 | Delta | 208 | 6/2 5:07 AM - 1:08 PM
+16 | JetBlue | 2099 | 6/2 8:02 AM - 4:03 PM
+17 | Alaska | 547 | 6/2 9:52 AM - 5:52 PM
+18 | Delta | 2817 | 6/2 12:49 PM - 8:49 PM
+19 | Alaska | 184 | 6/2 3:25 PM - 11:25 PM
+20 | Alaska | 2447 | 6/2 4:00 PM - 12:00 AM
+21 | United | 3489 | 6/2 4:18 PM - 12:18 AM
+22 | Alaska | 1850 | 6/2 5:52 PM - 1:52 AM
+Private calendar:
+id | importance | times
+0 | (6) | 5/31 8 PM - 10 PM
+1 | (6) | 6/1 2:30 PM - 4:30 PM
+2 | (4) | 6/2 10:30 AM - 11:30 AM
+3 | (4) | 6/2 5:30 PM - 6:30 PM
+Shared calendar (visible to assistant):
+id | importance | times
+0 | (1) | 6/2 2 PM - 2:30 PM
+1 | (8) | 6/1 9:30 AM - 10 AM
+2 | (4) | 6/2 4 PM - 4:30 PM
+3 | (8) | 5/31 3:30 PM - 7:30 PM
+4 | (5) | 5/31 11:30 AM - 12 PM
+5 | (4) | 5/31 9:30 AM - 10:30 AM
+6 | (1) | 6/1 5:30 PM - 6 PM
+7 | (10) | 6/1 10 AM - 2 PM
+8 | (8) | 6/2 12 PM - 2 PM
+9 | (3) | 6/1 9 AM - 9:30 AM
+
+Agent: [message] Hello! I hear you would like to set up a flight! Does 6/2 @ 184$ sound good?
+You: [message] Do you know what time this would be at? / If you have cheap flights on 6/2 I would prefer to have it after 7 PM, if possible
+You: [message] I have a gap as well on 5/31 from 12pm until 3 PM
+Agent: [message] Unfortunately,  all the flights after 7PM are in the higher price range. There is a flight that leaves at 5:52PM @ $1850 if that is more appropriate?
+Agent: [message] Unfortunately, there are no flights before 3PM on 5/31.
+You: [message] Due to the high price and a medium important personal meeting I have at 5:30 PM, I don't think that would be the best option for me. 
+
+Could we try something after 6 PM on 6/1?
+Agent: [message] I have found a flight that leaves 5:56PM on 6/1 for $421 if that works for you?
+Agent: [propose] 11 | Delta | 421 | 6/1 5:56 PM - 1:56 AM
+Conflicting meetings:
+importance | times
+(1) | 6/1 5:30 PM - 6 PM
+Score:
+- (-1) Try not to skip important meetings
+- (6) Get a good deal on the flight price
+- (-20) Have everyone arrive around the same time
+Total score: -15
+You: [reject]
+Agent: [propose] 22 | Alaska | 1850 | 6/2 5:52 PM - 1:52 AM
+Conflicting meetings:
+importance | times
+(4) | 6/2 5:30 PM - 6:30 PM
+Score:
+- (-4) Try not to skip important meetings
+- (-10) Get a good deal on the flight price
+- (-13) Have everyone arrive around the same time
+Total score: -27
+You: [reject]
+Agent: [propose] 19 | Alaska | 184 | 6/2 3:25 PM - 11:25 PM
+Conflicting meetings:
+importance | times
+(4) | 6/2 4 PM - 4:30 PM
+importance | times
+(4) | 6/2 5:30 PM - 6:30 PM
+Score:
+- (-8) Try not to skip important meetings
+- (8) Get a good deal on the flight price
+- (-6) Have everyone arrive around the same time
+Total score: -6
+You: [accept]
+Agent: [message] How does 6/2 for $1850 for 5:52PM - 1:52PM sound?
+You: [message] Thanks that worked a lot more for me!
+Final Score: 1
+
+TRIP 2.

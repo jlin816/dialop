@@ -1,0 +1,252 @@
+html, body, .main {
+  height: 100%;
+  font-family: 'Asap', sans-serif!important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0px;
+}
+
+.full-screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#instruction-overlay {
+  z-index: 100;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+#links {
+  display: inline;
+}
+
+.form-check {
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+#start-game {
+  /* pointer-events: none; */
+  /* opacity: 50%; */
+}
+
+.top-bar {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  background-color: #dadce0;
+}
+
+.top-bar #status {
+  background-color: #fce988;
+}
+
+#instruction-sidebar {
+  background-color: #dadce0;
+  padding: 2.5rem;
+  font-size: 14px;
+}
+
+#game {
+  margin-top: 20px;
+  height: 100%;
+  max-width: 100%;
+}
+
+#log {
+  overflow-y: scroll;
+  padding: 5rem 3rem;
+  /* padding-bottom: 500px; */
+  height: 100%;
+}
+
+.log-entry {
+  background-color: #e9e9e9;
+  padding: 20px;
+  margin: 15px 0px;
+  border-radius: 3px;
+}
+
+.current-round {
+  position: fixed;
+  /* parent width becomes viewport with fixed */
+  width: 100%;
+  padding: 30px;
+  bottom: 0px;
+  right: 0px;
+  border-top: 3px solid #e9e9e9;
+  background-color: #ffffff;
+}
+
+.playerMessage {
+  background-color: #007bff;
+  color: white;
+  text-align: right;
+  padding: 5px;
+  padding-right: 10px;
+  margin-left: 200px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /* Add rounded rectangle edges */
+  border-radius: 10px 10px 10px 10px;
+}
+
+.partnerMessage {
+  background-color: rgb(233, 233, 235);
+  /* color: white; */
+  text-align: left;
+  padding: 5px;
+  padding-left: 10px;
+  margin-right: 200px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.leftalign {
+  text-align: left !important;
+}
+
+.scratchpad {
+  /* padding: 10px; */
+  display: none;
+}
+
+#textbox {
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  border: 2px solid #e9e9e9;
+}
+
+.waiting {
+  margin: auto;
+  padding: 20px 0px;
+}
+
+.actions {
+  margin: auto;
+  padding: 20px 0px;
+}
+
+.actions > div {
+  padding: 10px 0px;
+}
+
+.actions-utterance, .actions-proposal-response {
+  justify-content: space-between;
+}
+
+#utterance {
+  resize: none;
+}
+
+#submit-utterance {
+  height: 100%;
+}
+
+.proposed {
+  background-color: gold !important;
+  /* opacity: 50%; */
+  /* box-shadow: inset 0 0 25px gold; */
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+  border-color: gold;
+  background-color: gold;
+}
+
+.numberCell:hover {
+  /* background-color: gold !important; */
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.outlined {
+  border: 5px solid grey !important;
+}
+
+.progress {
+  margin-bottom: 20px;
+}
+
+.action-log {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 2px solid #e9e9e9;
+  overflow-y: scroll;
+  height: 50vh;
+}
+
+#toggle-best {
+  width: 100%;
+  margin-top: 20px;
+  display: none;
+}
+
+/* Flight cards  */
+.option-container {
+  max-width: 100%;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.card {
+  font-size: 12px;
+  font-family: 'Roboto Mono', monospace;
+  min-width: 200px;
+}
+
+.card.condensed {
+  width: 200px;
+}
+
+.card .flight-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.card.reward {
+  background-color: #dee6ff; 
+}
+
+.card .flight-info > div {
+  margin: 2px;
+}
+.card-input-element:checked + .card {
+  box-shadow: 0 0 1px 1px #2ecc71;
+}
+
+.reward-info {
+  font-weight: bold;
+  color: #0036e1;
+  align-text: center;
+}
+
+#end-game {
+  padding-top: 20px;
+}
+
+#submit {
+  width: 100%;
+}
+
+.handsontable .wtBorder {
+  display: none !important;
+}
+
+#score {
+  display: none;
+}

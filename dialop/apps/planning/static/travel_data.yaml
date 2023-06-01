@@ -1,0 +1,241 @@
+all_events:
+# Restaurants
+  - name: Saul's
+    type: restaurant
+  - name: Mad Seoul
+    type: restaurant
+  - name: Earthbar
+    type: restaurant
+  - name: Cookies Cream
+    type: restaurant
+  - name: Lucia's
+    type: restaurant
+  - name: The Dockside Grill
+    type: restaurant
+  - name: Caribbean Corner
+    type: restaurant
+  - name: Taqueria y Mas
+    type: restaurant
+  - name: El Toro Steakhouse
+    type: restaurant
+  - name: The Cakery
+    type: restaurant
+
+# Bars
+  - name: A-Trane
+    type: bar
+  - name: Kozy Kar
+    type: bar
+  - name: Harper and Rye
+    type: bar
+  - name: Bards n Brews
+    type: bar
+  - name: The Jazz Spot
+    type: bar
+  - name: The Dive
+    type: bar
+
+# Cafes
+  - name: Asha Tea House
+    type: cafe
+  - name: Schwarzes Cafe
+    type: cafe
+  - name: Common Grounds
+    type: cafe
+  - name: The Cupcake Bar
+    type: cafe
+  - name: Coffee Nook
+    type: cafe
+
+# Sights
+  - name: BAMPFA
+    type: museum
+  - name: City Museum of Art
+    type: museum
+  - name: Liberty Memorial
+    type: landmark
+  - name: Historical Society
+    type: museum
+  - name: Hindenberg Memorial
+    type: landmark
+  - name: Einstein's summer house
+    type: landmark
+  - name: The Tower
+    type: landmark
+
+# Outdoor
+  - name: Atlas Park
+    type: park
+  - name: Moabit Garden
+    type: park 
+  - name: Riverside Trail
+    type: park
+  - name: Lincoln Park
+    type: park
+  - name: The Arboretum
+    type: park
+  - name: Garden of Wonders
+    type: park
+
+# Shopping
+  - name: Vista Ridge Mall
+    type: shop
+  - name: Central Plaza
+    type: shop
+  - name: The Mall
+    type: shop
+  - name: Market Street
+    type: shop
+  - name: Artisan Street Fair
+    type: shop
+
+all_types:
+  restaurant:
+    price_range: [10, 200]
+  cafe:
+    price_range: [5, 20]
+  museum:
+    price_range: [0, 50]
+  bar:
+    price_range: [10, 100]
+  landmark:
+    price_range: [0, 20]
+  park:
+    price_range: [0, 1]
+  shop:
+    price_range: [50, 500]
+features:
+  rating:
+    type: categorical 
+    values: [1,1.5,2,2.5,3,3.5,4,4.5,5]
+  has parking:
+    type: bool
+  has takeout:
+    type: bool
+    event_types: [restaurant]
+  touristy:
+    type: bool
+  cuisine:
+    type: categorical
+    values: [american, chinese, japanese, korean, french, ethiopian, spanish, kosher, thai, seafood]
+    event_types: [restaurant]
+  good for kids:
+    type: bool
+    event_types: [restaurant, cafe, museum, landmark, park, shop]
+  accepts reservations:
+    type: bool
+    event_types: [restaurant]
+  open late:
+    type: bool
+  good for groups:
+    type: bool
+  ambience:
+    type: categorical
+    values: [divey, hipster, casual, trendy, intimate, romantic, classy, serious]
+    event_types: [restaurant, cafe, bar]
+  outdoor seating:
+    type: bool
+    event_types: [restaurant, cafe, bar]
+  vegetarian options:
+    type: bool
+    event_types: [restaurant, cafe]
+  vegan options:
+    type: bool
+    event_types: [restaurant, cafe]
+  live music:
+    type: bool
+    event_types: [restaurant, bar]
+  has wifi:
+    type: bool
+    event_types: [cafe]
+  alcohol type:
+    type: categorical
+    values: [beer, wine, cocktails]
+    event_types: [bar]
+  viewpoint:
+    type: bool
+    event_types: [park]
+preferences:
+  rating:
+    generate: fixed
+    prefs:
+    - value_sets: [[1,1.5,2,2.5], [3,3.5,4,4.5,5]]
+      description: "prefer places rated above 3 stars"
+    - value_sets: [[1,1.5,2,2.5], [4,4.5,5]]
+      description: "prefer ratings above 4"
+    - value_sets: [[1,1.5,2,2.5], [4.5,5]]
+      description: "prefer ratings above 4.5"
+  has_parking:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "renting a car so preferably places with parking"
+    - value_sets: [[], [True]]
+      description: "renting a car so preferably places with parking, but street parking also ok"
+  has_takeout:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "prefer just eating takeout"
+  touristy:
+    generate: fixed
+    prefs:
+    - value_sets: [[], [True]]
+      description: "want to go to all the classic touristy spots!" 
+    - value_sets: [[], [False]]
+      description: "seeing hidden, non-touristy spots would be cool"
+    - value_sets: [[True], [False]]
+      description: "hidden spots much better than tourist traps"
+  cuisine:
+    generate: any_k
+  good for kids:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "family trip, best to go to places that are good for kids"
+  accepts reservations:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "would be great if everything is reservable in advance"
+  good for groups:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "group of 7, best if we could go to places good for groups"
+  ambience:
+    generate: any_1
+  outdoor seating:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "COVID conscious, outdoor seating places would be best"
+  vegetarian options:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "generally like eating vegetarian options"
+  vegan options:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "generally like eating vegan options"
+  live music:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "check out live music!"
+    - value_sets: [[True], [False]]
+      description: "no live music places, generally too loud"
+  has wifi:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "find a place with wifi to do some work at some point"
+  alcohol type:
+    generate: any_k
+  viewpoint:
+    generate: fixed
+    prefs:
+    - value_sets: [[False], [True]]
+      description: "would love to see some panoramic views of the city"

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <script src="https://unpkg.com/htmx.org@1.3.3"></script>
+</head>
+<body>
+<div id="instruction-overlay" class="full-screen-container">
+  Waiting for another player to connect...
+</div>
+<div class="top-bar">
+  <div id="status"></div>
+</div>
+<div class="main">
+  <div id="game" class="row">
+    <div id="human" class="col game-info" style="display: none">
+      <div id="left-container">
+        <div id="calendar-container">
+          <ul class="legend">
+            <li class="legend-item">
+              <div class="square personal"></div>
+              <span>Personal</span>
+            </li>
+            <li class="legend-item">
+              <div class="square work"></div>
+              <span>Work</span>
+            </li>
+          </ul>
+        </div>
+        <div id="mid-column">
+          <div id="scorecard">
+            <div id="scorecard-title">Scorecard</div>
+            <div id="scorecard-content"></div>
+          </div>
+          <div id="flights-container"></div>
+        </div>
+      </div>
+      <div id="human-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h1>Player Role: User</h1>
+          <p>You are playing the role of a <b>user</b> chatting with an assistant to help book flights for you and a friend.
+            Your goal is to find flights which:</p>
+            <ul>
+              <li>Arrive at around the same time for you and your friend</li>
+              <li>Don't conflict with any important meetings</li>
+              <li>Are affordable</li>
+            </ul>
+            <p>The assistant can see what flights are available and can also see the events on your work calendar but can't tell what meetings are most important to you, or view your personal calendar. For this game, you should assume that all meetings are held remotely and ignore travel time to and from the airport.</p>
+        </div>
+      </div>
+    </div>
+    <div id="agent" class="col game-info" style="display: none">
+      <div id="proposal-container">
+        <div>
+          <button disabled id="send-proposal" class="btn btn-primary btn-block">Send Booking to Everyone</button>
+        </div>
+      </div>
+      <div id="agent-modal" class="modal">
+        <div class="modal-content">
+          <span class="agent-close">&times;</span>
+          <h1>Player Role: Assistant</h1>
+          <p>You are playing the role of an <b>assistant</b> chatting with two users to help them book flights for a trip.
+            Your goal is to find flights which:</p>
+            <ul>
+              <li>Arrive at around the same time for both users</li>
+              <li>Don't conflict with any important meetings</li>
+              <li>Are affordable</li>
+            </ul>
+            <p>You can see flight prices and an overview of the user's work calendars, but you don't know which meetings are the most important. The users might also have some private appointments which aren't reflected on their work calendars. In addition to chatting with the players, you can select possible flights and suggest them to the users. The game will end if both users accept your proposal.</p>
+        </div>
+      </div>
+    </div>
+    <div id="log" class="col-3">
+      <div class="chat">
+        <h3>Chat</h3>
+        <div class="action-log">
+        </div>
+        <div class="waiting">Waiting for the other player to take their turn...</div>
+        <div class="actions">
+          <div class="actions-utterance">
+            <div class="textArea">
+              <textarea name="utterance" rows="3" class="utterance form-control" placeholder="Say something..."></textarea>
+            </div>
+            <div class="submitText">
+              <button class="submit-utterance btn btn-primary btn-block">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='fullcalendar.min.js')}}"></script>
+  <script type="module" src="{{ url_for('static', filename='client.js', version=5) }}"></script>
+  {% block scripts %}
+  {% endblock %}
+</body>
+</html>

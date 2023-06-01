@@ -1,0 +1,154 @@
+You are traveling to a new city and consulting a travel agent. For each city, you have created a document listing things you would like to do and preferences about the places you visit. The preferences are not shared between cities. Communicate with the travel agent to find the best destinations to go to for the day.
+
+Your objective is to maximize the "Final Score" at the end of the chat, which scores how well the itinerary you agreed on matches your preferences.
+
+CITY 1.
+Travel Preferences:
+check out live music!
+prefer just eating takeout
+keep budget below $30
+would be great if everything is reservable in advance
+like: korean, kosher, japanese, seafood
+generally like eating vegan options
+definitely want to go to Mad Seoul
+renting a car so preferably places with parking
+would love to see some panoramic views of the city
+family trip, best to go to places that are good for kids
+minimize travel distance
+
+You: [message] I'd like to see some live music, eat only takeout from Korean, kosher, Japanese or seafood restaurants. Vegan options are a plus and I'd like to stop by Mad Seoul. I'd also like places with parking, good city views and kid friendly. My budget is $30.
+Agent: [propose] [Common Grounds, NULL, NULL]
+Proposal Score:
+1) (score: 4) Common Grounds
+good for groups: True
+open late: False
+rating: 2.5
+touristy: False
+vegan options: True
+2) Empty
+3) Empty
+4) Empty
+5) Empty
+
+Overall Checklist:
+YES (score: 0) keep budget below $30
+NO (score: -9) definitely want to go to Mad Seoul
+TOTAL SCORE: +4+0+0+0+0+0-9=-5
+
+Agent: [message] I have made a proposal. Please let me know what you think of it.
+You: [message] It's not bad so far, I'd really like to stop by Mad Seoul though.
+Agent: [message] Sure. I can help you out with that! Are there any other events you'd like to go to after Mad Seoul?
+You: [message] I'd like to go to see some live music.
+Agent: [message] I have one option for you that you might be interested in. However, it is not recommended for kids. Are there any other places?
+You: [message] Somewhere with a panoramic view of the city would be nice or somewhere that's kid-friendly in general.
+Agent: [message] I have several options available. Do you have a price point?
+You: [message] As long as it's $30 or under, it should be fine.
+Agent: [propose] [Mad Seoul, Lincoln Park, Atlas Park]
+Proposal Score:
+1) (score: 1) Mad Seoul
+good for kids: False
+live music: False
+open late: True
+touristy: True
+vegan options: True
+2) (score: -8) Travel from Mad Seoul to Lincoln Park, 0.8mi
+3) (score: -3) Lincoln Park
+good for groups: False
+good for kids: True
+rating: 3
+touristy: False
+viewpoint: False
+4) (score: -11) Travel from Lincoln Park to Atlas Park, 1.1mi
+5) (score: 7) Atlas Park
+good for groups: False
+good for kids: True
+has parking: False
+touristy: True
+viewpoint: True
+
+Overall Checklist:
+NO (score: -1) keep budget below $30
+YES (score: 9) definitely want to go to Mad Seoul
+TOTAL SCORE: +1-8-3-11+7-1+9=-6
+You can [think], or output one of these choices:
+(1) [accept]
+(2) [reject]
+
+Agent: [message] I have found several options. If you have enough time you may even be able to go to all of these places as they are all under 2 miles away from each other and close to Mad Seoul. Both parks are also kid friendly.
+You: [think] I am losing the most points from the travel time between events. I should reject the proposal and tell the agent to find sites that are closer to each other.
+You: [reject] 
+You: [message] It would be great if you could significantly lower the travel time. Maybe another restaurant or a concert that's closer?
+Agent: [message] Mad Seoul is 0.8 miles away from Lincoln Park. I can definitely find a restaurant for you. Do you want a place with live music, touristy, kid-friendly, and has vegetarian options? The price point is around $10.
+You: [message] Yes, all those things would be great. Just make sure to keep the travel distance as low as you can get it.
+Agent: [propose] [Mad Seoul, Lincoln Park, Caribbean Corner]
+Proposal Score:
+1) (score: 1) Mad Seoul
+good for kids: False
+live music: False
+open late: True
+touristy: True
+vegan options: True
+2) (score: -8) Travel from Mad Seoul to Lincoln Park, 0.8mi
+3) (score: -3) Lincoln Park
+good for groups: False
+good for kids: True
+rating: 3
+touristy: False
+viewpoint: False
+4) (score: -8) Travel from Lincoln Park to Caribbean Corner, 0.8mi
+5) (score: -1) Caribbean Corner
+ambience: divey
+good for groups: False
+good for kids: False
+has takeout: True
+live music: True
+
+Overall Checklist:
+NO (score: -1) keep budget below $30
+YES (score: 9) definitely want to go to Mad Seoul
+TOTAL SCORE: +1-8-3-8-1-1+9=-11
+You can [think], or output one of these choices:
+(1) [accept]
+(2) [reject]
+
+Agent: [message] I have several options. One option might be a little too far for you, however it does have live music. I also have another restaurant that is closer. All of the places I have recommended are less than a mile apart from each other.
+You: [think] I am still losing a lot of points from the travel time between events. This seems more important to me than the other features of the sites.
+You: [reject] 
+You: [message] The places you've chosen are great, but everything is still too far apart for me. Choose the places closest to each other if you can.
+Agent: [propose] [Mad Seoul, Caribbean Corner, Hindenberg Memorial]
+Proposal Score:
+1) (score: 1) Mad Seoul
+good for kids: False
+live music: False
+open late: True
+touristy: True
+vegan options: True
+2) (score: 0) Travel from Estimated Travel to Caribbean Corner, 0mi
+3) (score: -1) Caribbean Corner
+ambience: divey
+good for groups: False
+good for kids: False
+has takeout: True
+live music: True
+4) (score: -2) Travel from Estimated Travel to Hindenberg Memorial, 0.2mi
+5) (score: -2) Hindenberg Memorial
+good for groups: True
+good for kids: False
+open late: False
+rating: 5
+touristy: True
+
+Overall Checklist:
+NO (score: -1) keep budget below $30
+YES (score: 9) definitely want to go to Mad Seoul
+TOTAL SCORE: +1+0-1-2-2-1+9=4
+You must output one of these choices:
+(1) [accept]
+(2) [reject]
+
+Agent: [message] Yes sir, but there are only so many options that are kid friendly near the café of your choice. However I have one more proposal that is within a much better distance of each other.
+You: [think] All the events are very close to each other and the score is a lot better. My total score seems like it could be pretty good. I should accept this proposal.
+You: [accept] 
+FINAL SCORE: 92/100
+
+CITY 2.

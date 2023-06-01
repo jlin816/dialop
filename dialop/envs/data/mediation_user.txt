@@ -1,0 +1,9 @@
+You are planning a reunion with your friend in a new city! You are flying in from different states and trying to book a flight that arrives around the same time.
+
+You’ve got a busy schedule of remote meetings and want to make sure your flight doesn’t conflict with any of those meetings, but you also want to arrive as close to the same time as your friend as possible. You’d also like to keep costs low, and some of your meetings are more important than others.
+
+To help organize the trip, you will chat with a travel agent who has access to you and your friend’s work calendars and the set of flights. The agent doesn’t have access to your personal calendar or know how important your meetings are, so you’ll need to chat with them to share this information. This agent will also be talking with your friend in another chat, which you can’t see.
+
+Your objective is to maximize the  "Final Score" at the end of the chat (max score 1), which scores how well the flights the agent booked for you satisfies your group's preferences, while obeying your individual meeting constraints.
+
+You can [message], and if the agent sends a [propose], you will respond [accept] or [reject]. You cannot send [propose].

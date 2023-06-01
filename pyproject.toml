@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "dialop"
+version = "0.1.0"
+description = "The DialOp environments for collaborative dialogue."
+authors = ["Jessy Lin <jessy81697@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+numpy = "*"
+scipy = "*"
+pyparsing = "*"
+python-dateutil = "*"
+rich = "*"
+tiktoken = "*"
+tyro = "*"
+thefuzz = "*"
+openai = "*"
+Flask = { version = "2.2.2", optional = true }
+Flask-SocketIO = { version = "5.3.2", optional = true }
+Jinja2 = { version = "3.1.2", optional = true }
+"ruamel.yaml" = { version = "0.17.21", optional = true }
+Werkzeug = { version = "2.2.2", optional = true }
+boto3 = { version = "1.26.69", optional = true }
+
+[tool.poetry.extras]
+apps = ["Flask", "Flask-SocketIO", "Jinja2", "ruamel.yaml", "Werkzeug", "boto3"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

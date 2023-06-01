@@ -1,0 +1,107 @@
+You are a travel agent. Book a set of three destinations that make the user most happy. Your objective is to maximize the "Final Score" at the end of the chat, which scores how well the final itinerary you proposed matches the user's preferences.
+
+You and the user are limited to a fixed number of words in the chat. When the word count is below 0 then you will be forced to make your final proposal, which will be scored. You can also make proposals before the word count is up.
+
+You can use the `Search` tool with the following API:
+
+field: can be name, category, price, info, or any other field of an site
+category: can be [restaurant, cafe, museum, bar, landmark, park, shop]
+Search:
+Parameters
+- fields: list of field names to return
+- filters: list of filters to intersect with AND. Can only filter one of the
+  fields above.
+- text_query: freeform text query to search in event descriptions. Will be intersected with filters with AND.
+- sort_by: list of fields or callable function to sort results by.
+- limit: number of results to return
+
+USER 1.
+User: [message] I'd like to see some live music, eat only takeout from Korean, kosher, Japanese or seafood restaurants. Vegan options are a plus and I'd like to stop by Mad Seoul. I'd also like places with parking, good city views and kid friendly. My budget is $30.
+You: [think] The user listed many preferences. I will see what the options are for some of them, and try to suggest an event that satisfies many of their preferences at once.
+You: [tool] Search(fields=[name], text_query=good for kids)
+Search Results (6):
+name
+Saul's
+The Dockside Grill
+Riverside Trail
+Moabit Garden
+Common Grounds
+The Dive
+
+You: [tool] Search(fields=[name], text_query=viewpoint)
+Search Results (2):
+name
+Garden of Wonders
+Moabit Garden
+
+You: [tool] Search(fields=[name], text_query=has parking)
+Search Results (3):
+name
+Liberty Memorial
+Common Grounds
+Lincoln Park
+
+You: [think] Common Grounds is good for kids and has parking, so it seems like an option the user might like. Let me send a partial proposal so I can see what the user thinks.
+You: [propose] [Common Grounds, NULL, NULL]
+You: [message] I have made a proposal. Please let me know what you think of it.
+User: [message] It's not bad so far, I'd really like to stop by Mad Seoul though.
+You: [message] Sure. I can help you out with that! Are there any other events you'd like to go to after Mad Seoul?
+User: [message] I'd like to go to see some live music.
+You: [think] I will try to find somewhere with live music near Mad Seoul and check whether the event also satisfies the other preferences the user listed.
+You: [tool] Search(fields=[name, good for kids, has parking, viewpoint], text_query=live music, sort_by=[distance_to(Mad Seoul)])
+Search Results (1):
+name|category|good for kids|has parking|viewpoint|distance_to(Mad Seoul)
+Cookies Cream|restaurant|False|True|False|1.2
+
+You: [message] I have one option for you that you might be interested in. However, it is not recommended for kids. Are there any other places?
+User: [message] Somewhere with a panoramic view of the city would be nice or somewhere that's kid-friendly in general.
+You: [tool] Search(fields=[name, category, good for kids, has parking, viewpoint], filters=[good for kids OR viewpoint], sort_by=[distance_to(Mad Seoul)])
+Search Results (4):
+name|category|good for kids|has parking|viewpoint|distance_to(Mad Seoul)
+Atlas Park|park|True|True|False|0.2
+Lincoln Park|park|True|False|False|0.8
+Moabit Garden|park|False|True|True|1.3
+Garden of Wonders|park|False|False|True|1.8
+
+You: [message] I have several options available. Do you have a price point?
+User: [message] As long as it's $30 or under, it should be fine.
+You: [tool] Search(fields=[name, category, good for kids, has parking, viewpoint], filters=[good for kids OR viewpoint], sort_by=[distance_to(Mad Seoul), price])
+Search Results (4):
+name|category|good for kids|has parking|viewpoint|distance_to(Mad Seoul)|price
+Atlas Park|park|True|True|False|0.2|0
+Lincoln Park|park|True|False|False|0.8|0
+Moabit Garden|park|False|True|True|1.3|0
+Garden of Wonders|park|False|False|True|1.8|0
+
+You: [propose] [Mad Seoul, Lincoln Park, Atlas Park]
+You: [message] I have found several options. If you have enough time you may even be able to go to all of these places as they are all under 2 miles away from each other and close to Mad Seoul. Both parks are also kid friendly.
+User: [reject]
+User: [message] It would be great if you could significantly lower the travel time. Maybe another restaurant or a concert that's closer?
+You: [think] Concert is not a category I can search by. I should look for a restaurant that is close to Mad Seoul and satisfies the user's preferences as much as possible.
+You: [tool] Search(fields=[name, price, info], filters=[category == restaurant], sort_by=[distance_to(Mad Seoul)])
+Search Results (4):
+name|price|info|distance_to(Mad Seoul)
+Caribbean Corner|10|divey, has takeout, live music, vegetarian options|0.0
+El Toro Steakhouse|130|good for groups, live music, outdoor seating|0.8
+Earthbar|40|classy, rating: 3, vegan options|0.9
+Saul's|40|spanish, touristy|0.9
+
+You: [message] Mad Seoul is 0.8 miles away from Lincoln Park. I can definitely find a restaurant for you. Do you want a place with live music, touristy, kid-friendly, and has vegetarian options? The price point is around $10.
+User: [message] Yes, all those things would be great. Just make sure to keep the travel distance as low as you can get it.
+You: [propose] [Mad Seoul, Lincoln Park, Caribbean Corner]
+You: [message] I have several options. One option might be a little too far for you, however it does have live music. I also have another restaurant that is closer. All of the places I have recommended are less than a mile apart from each other.
+User: [reject]
+User: [message] The places you've chosen are great, but everything is still too far apart for me. Choose the places closest to each other if you can.
+You: [think] I should just look for the closest places to Mad Seoul.
+You: [tool] Search(fields=[name], sort_by=[distance_to(Mad Seoul)], limit=2)
+Search Results (2):
+name|distance_to(Mad Seoul)
+Caribbean Corner|0.0
+Hindenberg Memorial|0.2
+
+You: [propose] [Mad Seoul, Caribbean Corner, Hindenberg Memorial]
+You: [message] Yes sir, but there are only so many options that are kid friendly near the café of your choice. However I have one more proposal that is within a much better distance of each other.
+User: [accept]
+FINAL SCORE: 92/100
+
+USER 2.

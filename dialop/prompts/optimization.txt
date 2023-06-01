@@ -1,0 +1,72 @@
+You and your partner are area chairs for a conference and you have to assign reviewers to papers. Each of you has some information about which reviewers would be good for which papers, but you'll have to communicate in order to make the best assignments.
+
+For each game, you will see a table of reviewer-paper similarity scores. The higher the score, the better the fit. You will also see a list of reviewers and papers. You can send messages to your partner, propose assignments, and accept or reject your partner's proposals.
+
+Your goal is to propose a one-to-one matching between reviewers and papers with the highest sum of scores. The "Final Score" at the end of the chat is out of 1.0 and shows how well you did relative to the best you could do with your partner. Your goal is to maximize that score.
+
+
+EXAMPLE 1.
+Reviewer Paper Similarity Scores:
+,BLEU: a Method for Automatic Evaluation of MT,Electra: Pre-training Text Encoders as Discriminators,GloVe: Global Vectors for Word Representation,GLUE: A Multi-Task Benchmark and Analysis Platform for NLU,LLaMA: Open and Efficient Foundation Language Models,RoBERTa: A Robustly Optimized BERT Pretraining Approach,QuAC: Question Answering in Context,SWAG: An Adversarial Dataset for Commonsense Inference
+Ava Li,,,167,,,,,431
+Daniel Nguyen,236,,459,,,,213,83
+Sofia Patel,,,171,106,255,,,
+Andrei Petrov,60,,13,,,,306,320
+Morgan Reed,,,,,,,162,
+Joseph Santos,190,,,18,,,,
+Ethan Smith,,204,13,325,,,,
+Noah Wilson,,,185,,,,380,283
+
+You: [message] Hello!
+Partner: [message] Hi! Who should we put for SWAG?
+You: [message] I think Ava LI would be good for Swag?
+Partner: [message] Sounds good to me!~
+You: [message] I also think Daniel Nguyen woould be good for GloVe if you haven't allocated him yet.
+Partner: [message] What do you have for LLaMA? I don't have anything for LLaMA.
+You: [message] I only have limited information on LLaMA. Sofia Patel might ve a good candidate for it. / Ethan might good for GLUE maybe? / BLEU I don't much information on, but Joseph has a decent score in that field.
+Partner: [message] I have a really high score for GLUE with Andrei so I am going to keep that one.
+You: [message] Who you think would be good for Electra?
+Partner: [message] Sofia Patel is the best option for that category on my end.
+You: [message] I don't have much information on Morgan Reed or Ethan Smith, how about you?
+Partner: [propose] Proposal:<br/>&emsp; - BLEU: Morgan Reed<br/>&emsp; - Electra: Sofia Patel<br/>&emsp; - GLUE: Andrei Petrov<br/>&emsp; - GloVe: Daniel Nguyen<br/>&emsp; - LLaMA: Ethan Smith<br/>&emsp; - QuAC: Noah Wilson<br/>&emsp; - RoBERTa: Joseph Santos<br/>&emsp; - SWAG: Ava Li
+You: [accept]
+Final Score: 1
+
+EXAMPLE 2.
+Reviewer Paper Similarity Scores:
+,BLEU: a Method for Automatic Evaluation of MT,Electra: Pre-training Text Encoders as Discriminators,GloVe: Global Vectors for Word Representation,GLUE: A Multi-Task Benchmark and Analysis Platform for NLU,LLaMA: Open and Efficient Foundation Language Models,RoBERTa: A Robustly Optimized BERT Pretraining Approach,QuAC: Question Answering in Context,SWAG: An Adversarial Dataset for Commonsense Inference
+Ava Li,386,,,120,144,,,202
+Daniel Nguyen,,,,434,,,,
+Sofia Patel,439,,,38,,,,270
+Andrei Petrov,,,169,294,231,,101,
+Morgan Reed,14,144,,,478,,,
+Joseph Santos,251,115,,,,275,154,
+Ethan Smith,86,,19,,19,,,57
+Noah Wilson,,,,159,313,,,188
+
+Partner: [message] I am not 10/10 confident on anyone, but lots solid options on my end. Id say my most confident lock in would be Sofia on LLaMA based on what im seeing. Ethan on Glue looks great as well / Ava is above average on BLEU and Glove
+You: [message] Okay, give me a second / so Sofia on LLama / Morgan for me is the BEST on Llama  / they have the best pairing of all my info
+Partner: [message] hmm, looks like we have a lot of good options for Llama in that case. Maybe we come back to that. I have a ton of info for quac, the only person I dont know about quac is Joseph. But otherwise, Ethan or Ava is the best at it / Though nobody is great at it to be honest.
+You: [message] I have only who is bad at Quac so we can go with who you'd like / Joseph and Andei are 100% out in that category / Let me know if you lock someone in there for now / Canwe lock Daniel into Glue  / he is really strong choice there
+Partner: [message] That works for me, that lets me put Ethan onto quac in that case / Do you have andrei as being solid at anything? All I see is that he is kinda good at Glue, but he might be a candidate for taking a gamble
+You: [message] Andrei is mid at Glue / but not worth taking over Daniel
+Partner: [message] Ok, sounds good
+You: [message] Sofia is killing it for Bleu / Better than Ava who is also really good
+Partner: [message] Hmmm, Sofia is my strongest candidate for Llama, its my most confident pick out of all my info. / but, I do see other options for Ava so maybe its worth it / would you say 9 or 10 out of 10 on Sofia on BLEU?
+You: [message] Is Sofia better than Morgan on Llama / if so we can move Sofia / but Morgan is my best for his Llama knoweldge
+Partner: [message] Hmmm, Joseph is solid at Llama as well. And I dont have any other info for Joseph, so I kinda like him there. But I also dont have any other good spots for Morgan, so maybe we roll with that for now. / Do you have any info on who would be a good candidate for roberta at all? / or swag. I got nothing on those, might need to take some risk
+You: [message] Joseph is alright barely
+Partner: [message] And what about electra? / I only know bad options for those three.
+You: [message] I got Morhan and Jo bad at Electra / do you have enough to fill in the rest
+Partner: [message] I got ava and Noah bad at electra / might put andrei there?
+You: [message] Andrei for now agreed / is Jo just Roberta for now
+Partner: [message] gonna throw out a proposal but definitely reject if you see something / I have him on swag right now but maybe roberta better? I have no info either way
+Partner: [propose] Proposal:<br/>&emsp; - BLEU: Sofia Patel<br/>&emsp; - Electra: Andrei Petrov<br/>&emsp; - GLUE: Daniel Nguyen<br/>&emsp; - GloVe: Ava Li<br/>&emsp; - LLaMA: Morgan Reed<br/>&emsp; - QuAC: Ethan Smith<br/>&emsp; - RoBERTa: Noah Wilson<br/>&emsp; - SWAG: Joseph Santos
+You: [reject]
+You: [message] Thats actually really good / yeah that works  / if you want to re propose / I dont see anything clearly off
+Partner: [message] Its scary on my end because almost every person I have locked in has no info on my end haha / its almost all you but Im still fairly confident since none of my scores were insane
+Partner: [propose] Proposal:<br/>&emsp; - BLEU: Sofia Patel<br/>&emsp; - Electra: Andrei Petrov<br/>&emsp; - GLUE: Daniel Nguyen<br/>&emsp; - GloVe: Ava Li<br/>&emsp; - LLaMA: Morgan Reed<br/>&emsp; - QuAC: Ethan Smith<br/>&emsp; - RoBERTa: Noah Wilson<br/>&emsp; - SWAG: Joseph Santos
+You: [accept]
+Final Score: 1
+
+EXAMPLE 3.

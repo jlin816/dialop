@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@12.1.3/dist/handsontable.full.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.01.min.css">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+  <script src=https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js></script>
+  <link rel="stylesheet" href=https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <script src="https://unpkg.com/htmx.org@1.3.3"></script>
+</head>
+<body>
+<div id="instruction-overlay" class="full-screen-container">
+  Waiting for another player to connect...
+</div>
+<div class="top-bar">
+  <div id="status"></div>
+</div>
+<div class="main">
+  <div id="game" class="row">
+    <div id="human" class="col game-info" style="display: none">
+      <div>
+        <div style="margin-right: 40px">
+          <div id="human-doc" class="unselectable">
+            <h3>Travel Planning</h3>
+          </div>
+          <div id="scorecard">
+            <div id="scorecard-title">Scorecard</div>
+            <div id="scorecard-content"></div>
+          </div>
+        </div>
+        <div id="timeline"></div>
+      </div>
+      <div id="human-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h1>Player Role: User</h1>
+          <p>You are playing the role of a <b>user</b> chatting with an assistant to help plan a trip.
+            Your assistant can see a list of events and a map with more information about each event. You should:</p>
+            <ul>
+              <li>Chat with the assistant to tell them about your preferences</li>
+              <li>Propose modifications if the assistant suggests an itinerary that doesn't work for you</li>
+            </ul>
+            <p>The assistant doesn't have access to your list of preferences. You may need to see multiple proposed itineraries before finding one that works. The game will end when you accept a proposal.</p>
+        </div>
+      </div>
+    </div>
+    <div id="agent" class="col game-info" style="display: none">
+      <div>
+        <div class="column left-column">
+          <div id="map"></div>
+          <div id="detail-view"></div>
+          <div id="filter">
+            <select id="event-type">
+              <option value="all">All Event Types</option>
+              <option value="bar">Bars</option>
+              <option value="cafe">Cafes</option>
+              <option value="landmark">Landmarks</option>
+              <option value="museum">Museums</option>
+              <option value="park">Parks</option>
+              <option value="restaurant">Restaurants</option>
+              <option value="shop">Shops</option>
+            </select>
+            <br/>
+          </div>
+        </div>
+        <div class="column mid-column">
+          <div id="timeline-container">
+            <div id="send-proposal">
+              <button class='btn btn-primary' disabled>Send
+                Proposal</button>
+              <p id="send-proposal-message">Fill in at least one event to send a proposal.</p>
+            </div>
+            <div id="timeline"></div>
+          </div>
+        </div>
+      </div>
+      <div id="agent-modal" class="modal">
+        <div class="modal-content">
+          <span class="agent-close">&times;</span>
+          <h1>Player Role: Assistant</h1>
+          <p>You are playing the role of an <b>assistant</b> chatting with a user to help them plan a trip.
+            Your goal is to chat with the user and learn their preferences, and then propose a valid itinerary.</p>
+            <ul>
+              <li>Click around on the map to see more information about locations</li>
+              <li>Use the filters to find events which meet the user's preferences</li>
+              <li>Begin typing in the timeline to choose events and propose an itinerary</li>
+            </ul>
+            <p>The user has a list of preferences in mind, but can't see the map or the full list of events. The game will end when they accept a proposal.</p>
+        </div>
+      </div>
+    </div>
+    <div id="log" class="col-3">
+      <h3>Chat</h3>
+      <div class="action-log">
+      </div>
+      <div class="waiting">Waiting for the other player to take their turn...</div>
+      <div class="actions">
+        <div id="actions-utterance">
+          <div id="textArea">
+            <textarea name="utterance" rows="3" id="utterance" class="form-control" placeholder="Say something..."></textarea>
+          </div>
+          <div id="submitText">
+            <button id="submit-utterance" class="btn btn-primary btn-block">Send</button>
+          </div>
+        </div>
+        <div id="actions-proposal" class="row">
+          <div id="proposal-form-container" class="col"></div>
+        </div>
+        <div id="actions-proposal-response" class="row" hidden>
+          <div class="col">
+            <button id="accept-proposal" class="btn btn-success btn-block">Accept</button>
+          </div>
+          <div class="col">
+            <button id="reject-proposal" class="btn btn-danger btn-block">Reject</button>
+          </div>
+        </div>
+      </div>
+      <div class="scratchpad">
+        <textarea id="textbox" type="text" placeholder="Feel free to use this space to plan your messages. The other player will not see what you write in this box."></textarea>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/handsontable@12.1.3/dist/handsontable.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+  <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+  <script type="module" src="{{ url_for('static', filename='client.js', version=5) }}"></script>
+  <script src="{{ url_for('static', filename='client.js', version=5) }}"></script>
+  {% block scripts %}
+  {% endblock %}
+</body>
+</html>

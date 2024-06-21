@@ -44,7 +44,7 @@ python dialop/play.py --game {optimization, planning, mediation}
 cd dialop/apps
 game={optimization, planning, mediation} flask run
 ```
-For Planning, you'll need to input a MapboxGL access key in `static/client.js` to show the map on the agent side.
+For Planning, you'll need to input a MapboxGL access key in `static/client.js` and `static/map.js` to show the map on the agent side and access other map features.
 
 # Human-Human Dialogues
 

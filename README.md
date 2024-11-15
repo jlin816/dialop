@@ -66,3 +66,6 @@ Coming soon!
   year={2023}
 }
 ```
+
+# License
+The data license is available under [LICENSE.md](/LICENSE.md).
